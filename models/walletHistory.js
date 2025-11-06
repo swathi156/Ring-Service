@@ -7,8 +7,11 @@ const WalletHistory = sequelize.define("WalletHistory", {
   device_id: { type: DataTypes.STRING, allowNull: false },
   transactionAmount: { type: DataTypes.FLOAT, allowNull: false },
   transactionType: { type: DataTypes.ENUM("credit", "debit"), allowNull: false },
+  walletBalanceBefore: { type: DataTypes.FLOAT, allowNull: true },
+  walletBalanceAfter: { type: DataTypes.FLOAT, allowNull: true },
 });
 
+// Relationship
 Wallet.hasMany(WalletHistory, { foreignKey: "device_id", sourceKey: "device_id" });
 WalletHistory.belongsTo(Wallet, { foreignKey: "device_id", targetKey: "device_id" });
 
